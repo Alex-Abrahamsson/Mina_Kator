@@ -55,5 +55,21 @@ namespace Kata2_IEquatable_IComparable_Factory
         #endregion
 
         public MemberList() { }
+
+        public MemberList(MemberList org)
+        {
+            //Shallow Copy
+            _members = org._members;
+
+            //Deep copy manual
+            _members = new List<IMember>();
+            foreach (var item in org._members)
+            {
+                _members.Add(new Member(item));
+            }
+            
+            //Deep copy with Linq
+            _members = org._members.Select(o => new Member(o)).ToList<IMember>();
+        }
     }
 }
