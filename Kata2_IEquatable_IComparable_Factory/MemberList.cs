@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace Kata2_IEquatable_IComparable_Factory
 {
+    public delegate bool IsMatch(IMember member);
+
     class MemberList : IMemberList
     {
         List<IMember> _members = new List<IMember>();
@@ -24,6 +26,21 @@ namespace Kata2_IEquatable_IComparable_Factory
         }
 
         public void Sort() => _members.Sort();
+
+
+        public int NrOfMembers (IsMatch match)
+        {
+            int c = 0;
+            foreach (var item in _members)
+            {
+                if(match(item))
+                {
+                    c++;
+                }
+            }
+            return c;
+        }
+        
 
         public override string ToString()
         {
