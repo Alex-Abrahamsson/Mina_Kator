@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Kata5_Delegates_Lamda
+namespace Kata5b_Events
 {
     public delegate bool IsMatch(IMember member);
-
+    
     class MemberList : IMemberList
     {
         List<IMember> _members = new List<IMember>();
@@ -25,7 +25,16 @@ namespace Kata5_Delegates_Lamda
             return c;
         }
 
-        public void Sort() => _members.Sort();
+        //Event handler and On... Method that fires the event
+        public EventHandler<int> ListSortedEvent;
+        public void OnListSorted(int NrOfItems) => ListSortedEvent?.Invoke(this, NrOfItems);
+
+        //Modified Sort that invokes the ListSorted event
+        public void Sort()
+        {
+            _members.Sort();
+            OnListSorted(_members.Count);
+        }
 
         public int NrOfMembers(IsMatch match)
         {

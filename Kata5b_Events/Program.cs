@@ -1,4 +1,4 @@
-﻿using Kata5_Delegates_Lamda;
+﻿using Kata5b_Events;
 
 Console.WriteLine("Create a couple of members");
 var member1 = Member.Factory.CreateWithRandomData();
@@ -7,12 +7,16 @@ var member2 = Member.Factory.CreateWithRandomData();
 Console.WriteLine($"member2: {member2}");
 
 Console.WriteLine("\nCreate a 20 Hilton members");
-var HiltonMembers = MemberList.Factory.CreateWithRandomData(20, HelloHilton); 
+var HiltonMembers = MemberList.Factory.CreateWithRandomData(20, HelloHilton);
+
+HiltonMembers.ListSortedEvent += ListSortedEventHandler;
 HiltonMembers.Sort();
 Console.WriteLine(HiltonMembers);
 
 Console.WriteLine("\nCreate a 20 Radisson members");
 var RadissonMembers = MemberList.Factory.CreateWithRandomData(20, HelloRadisson);
+
+RadissonMembers.ListSortedEvent += ListSortedEventHandler;
 RadissonMembers.Sort();
 Console.WriteLine(RadissonMembers);
 
@@ -53,5 +57,13 @@ static void HelloRadisson(IMember member)
 }
 
 static bool IsGold(IMember member) => member.Level == MemberLevel.Gold;
+#endregion
+
+
+#region #event handler
+static void ListSortedEventHandler(object? sender, int NrOfItems)
+{
+    Console.WriteLine($"#### {NrOfItems} sorted");
+}
 #endregion
 
