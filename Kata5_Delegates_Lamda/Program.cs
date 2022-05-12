@@ -31,6 +31,13 @@ Console.WriteLine(ScandicMembers);
 Console.WriteLine($"Nr of Blue members: {nrBlue}");
 
 
+Console.WriteLine($"HiltonMembers Gold Members: {HiltonMembers.NrOfMembers(IsGold)}");
+Console.WriteLine($"RadissonMembers Gold Members: {RadissonMembers.NrOfMembers(IsGold)}");
+
+Console.WriteLine($"HiltonMembers Gold Members: {HiltonMembers.NrOfMembers(m => m.Level == MemberLevel.Gold)}");
+Console.WriteLine($"RadissonMembers Gold Members: {RadissonMembers.NrOfMembers(m => m.Level == MemberLevel.Gold)}");
+
+
 #region Delegate Methods
 static void HelloHilton(IMember member)
 {
@@ -44,5 +51,7 @@ static void HelloRadisson(IMember member)
 {
     Console.WriteLine($"Warm Radisson welcome {member.FirstName}!!");
 }
+
+static bool IsGold(IMember member) => member.Level == MemberLevel.Gold;
 #endregion
 

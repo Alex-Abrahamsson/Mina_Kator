@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace Kata5_Delegates_Lamda
 {
+    public delegate bool IsMatch(IMember member);
+
     class MemberList : IMemberList
     {
         List<IMember> _members = new List<IMember>();
@@ -24,6 +26,19 @@ namespace Kata5_Delegates_Lamda
         }
 
         public void Sort() => _members.Sort();
+
+        public int NrOfMembers(IsMatch match)
+        {
+            int c = 0;
+            foreach (var item in _members)
+            {
+                if (match(item))
+                {
+                    c++;
+                }
+            }
+            return c;
+        }
 
         public override string ToString()
         {

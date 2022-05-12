@@ -32,7 +32,7 @@ Nu har du en körbar startpunkt
 
 9. Kompilera och kör.
 
-Du har nu gett varje ny medlem ett välkomsmeddelande genom att använda två delegate metoder
+Du har nu gett varje ny medlem ett välkomsmeddelande genom att använda två delegate metoder, RadissonGreetings() och HiltonGreetings()
 ---------------------------------------------------------------------------
 
 10. Istf de två delegate metoderna kan du använda lamda funktioner direkt i anropet MemberList.Factory.CreateWithRandomData(...).
@@ -45,3 +45,19 @@ Du har nu gett varje ny medlem ett välkomsmeddelande genom att använda två de
 
 12. I Program.Main efter att listan med scandic medlemmar är skapad, skriv ut den och antalet Blue medlemmar
     Kompilera och kör.
+
+
+Använd en delegate för att räkna antalet medlemmar som matchar ett visst kritera
+----------------------------------------------------------------------------
+13. I filen MemberList.cs mellan namespace och class deklarationen. Deklarer en delegate typ
+    public delegate bool IsMatch(IMember member);
+
+14. I classen MemberList skriv en Metod, public int NrOfMembers (IsMatch match) {... din kod ...}.
+    Metoden tar en delegare, match, som parameter och som loopar över
+    _members och räknar antaler medlemmar som matchar kriteriet i match()
+
+15. I Program
+    - deklarera en metod IsGold som följer reglerna av delegate typen IsMatch och returnerar true om
+      en medlem har Gold nivå, annars false.
+    - Anropa RadissonMember.NrOfMembers(IsGold) och HiltonMembers.NrOfMembers(IsGold) för att räkna antalet guldmedlemmar
+    - Prova med att använda Lambda direkt i anropet NrOfMembers(...) istf delegate metoden IsGold

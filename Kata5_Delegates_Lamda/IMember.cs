@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Kata5_Delegates_Lamda
 {
     public enum MemberLevel { Platinum, Gold, Silver, Blue}
-    interface IMember: IEquatable<IMember>, IComparable<IMember>
+    public interface IMember: IEquatable<IMember>, IComparable<IMember>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
