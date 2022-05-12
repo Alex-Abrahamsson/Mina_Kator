@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kata5_Delegates_Lamda
+namespace Kata5b_Events
 {
     class Member : IMember
     {
